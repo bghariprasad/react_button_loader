@@ -11,7 +11,7 @@ class ButtonLoader extends Component {
     return (
       <button
         type="button"
-        className={`button ${isLoading ? 'disabled' : ''}`}
+        className={`button ${isLoading ? 'react-button-disabled' : ''}`}
         disabled={isLoading}
         onClick={() => onClick()}
         style={
@@ -24,7 +24,7 @@ class ButtonLoader extends Component {
       >
         {isLoading ?
           <div
-            className="loader"
+            className="react-button-loader"
             style={{ width: `${loaderHeight}px`, height: `${loaderHeight}px` }}
           />
           :

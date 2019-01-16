@@ -6,7 +6,7 @@ npm install react_button_loader --save
 ```
 
 ## Demo
-<img src="https://github.com/bghariprasad/react_button_loader/raw/master/demo.gif" alt="demo" width="100%" />
+<img src="https://github.com/bghariprasad/react_button_loader/raw/master/demo.gif" alt="demo" width="125px" />
 
 ## Usage
 ```
@@ -69,7 +69,6 @@ class ReactButtonLoader extends Component {
 | Prop | Type | Default |
 | ---- | ---- | ------- |
 | isLoading | Boolean | true |
-| children | String | 'Click Me!' |
 | width | String | '125px' |
 | height | String | '35px' |
 | background | String | '#22b686' |
