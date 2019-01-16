@@ -1,6 +1,6 @@
 {
   "name": "react_button_loader",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Button loader for Reactjs",
   "main": "build/index.js",
   "peerDependencies": {
