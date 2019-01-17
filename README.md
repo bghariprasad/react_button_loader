@@ -91,13 +91,11 @@ class ReactButtonLoader extends Component {
   render() {
     return (
       <ButtonLoader
-        isLoading={this.state.loader2}
-        width={'150px'}
-        height={'50px'}
+        isLoading={this.state.toggleLoader}
         background="#c93b3b"
         loaderType= 'bouncing-ball'
         onClick={() => {
-          this.setState({loader2: true})
+          this.setState({toggleLoader: true})
         }}
       >
         Click Me 
@@ -125,13 +123,11 @@ class ReactButtonLoader extends Component {
   render() {
     return (
       <ButtonLoader
-        isLoading={this.state.loader3}
-        width={'150px'}
-        height={'50px'}
+        isLoading={this.state.toggleLoader}
         background="#42b5c1"
         loaderType= 'jiggling-lines'
         onClick={() => {
-          this.setState({loader3: true})
+          this.setState({toggleLoader: true})
         }}
       >
         Click Me 
