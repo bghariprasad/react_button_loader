@@ -7,13 +7,12 @@ React button with loader feature.
 ## Install
 ```
 npm install react_button_loader --save
-
 ```
 
 ## Demo
-<img src="https://github.com/bghariprasad/react_button_loader/raw/master/demo.gif" alt="demo" width="125px" />
+<img src="https://github.com/bghariprasad/react_button_loader/raw/master/green-spinner.gif" alt="green-spinner" width="125px" />
 
-## Usage
+## Usage Example
 ```
 React default button loader
 ```
@@ -40,6 +39,10 @@ class ReactButtonLoader extends Component {
   }
 }
 ```
+## Demo
+<img src="https://github.com/bghariprasad/react_button_loader/raw/master/violet-spinner.gif" alt="violet-spinner" width="125px" />
+
+## Usage Example
 ```
 React custom button loader
 ```
@@ -70,12 +73,82 @@ class ReactButtonLoader extends Component {
 }
 ```
 
+## Demo
+<img src="https://github.com/bghariprasad/react_button_loader/raw/master/bouncing-ball.gif" alt="bouncing-ball" width="125px" />
+
+## Usage Example
+```js
+import ButtonLoader from 'react_button_loader';
+
+class ReactButtonLoader extends Component {
+  constructor() {
+    super();
+    this.state = {
+      toggleLoader: false
+    };
+  }
+
+  render() {
+    return (
+      <ButtonLoader
+        isLoading={this.state.loader2}
+        width={'150px'}
+        height={'50px'}
+        background="#c93b3b"
+        loaderType= 'bouncing-ball'
+        onClick={() => {
+          this.setState({loader2: true})
+        }}
+      >
+        Click Me 
+      </ButtonLoader>
+    );
+  }
+}
+```
+
+## Demo
+<img src="https://github.com/bghariprasad/react_button_loader/raw/master/jiggling-lines.gif" alt="jiggling-lines" width="125px" />
+
+## Usage Example
+```js
+import ButtonLoader from 'react_button_loader';
+
+class ReactButtonLoader extends Component {
+  constructor() {
+    super();
+    this.state = {
+      toggleLoader: false
+    };
+  }
+
+  render() {
+    return (
+      <ButtonLoader
+        isLoading={this.state.loader3}
+        width={'150px'}
+        height={'50px'}
+        background="#42b5c1"
+        loaderType= 'jiggling-lines'
+        onClick={() => {
+          this.setState({loader3: true})
+        }}
+      >
+        Click Me 
+      </ButtonLoader>
+    );
+  }
+}
+```
+
 ## PROPTYPES
 | Prop | Type | Default |
 | ---- | ---- | ------- |
 | isLoading | Boolean | true |
+| disabled | Boolean | false |
 | width | String | '125px' |
 | height | String | '35px' |
+| loaderType | String | 'spinner' |
 | background | String | '#22b686' |
 | onClick | Function | () => null |
 # react_button_loader

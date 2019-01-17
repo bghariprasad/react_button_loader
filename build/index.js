@@ -404,10 +404,33 @@ var ButtonLoader = function (_Component) {
   function ButtonLoader() {
     _classCallCheck(this, ButtonLoader);
 
-    return _possibleConstructorReturn(this, (ButtonLoader.__proto__ || Object.getPrototypeOf(ButtonLoader)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (ButtonLoader.__proto__ || Object.getPrototypeOf(ButtonLoader)).call(this));
+
+    _this.renderLoader = _this.renderLoader.bind(_this);
+    return _this;
   }
 
   _createClass(ButtonLoader, [{
+    key: 'renderLoader',
+    value: function renderLoader(loaderHeight, loaderType) {
+      if (loaderType === 'bouncing-ball' || loaderType === 'fading-ball' || loaderType === 'jiggling-lines') {
+        return _react2.default.createElement(
+          'div',
+          {
+            id: loaderType
+          },
+          _react2.default.createElement('span', null),
+          _react2.default.createElement('span', null),
+          _react2.default.createElement('span', null),
+          _react2.default.createElement('span', null)
+        );
+      }
+      return _react2.default.createElement('div', {
+        className: 'react-button-loader',
+        style: { width: loaderHeight + 'px', height: loaderHeight + 'px' }
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
@@ -416,15 +439,17 @@ var ButtonLoader = function (_Component) {
           background = _props.background,
           isLoading = _props.isLoading,
           children = _props.children,
-          _onClick = _props.onClick;
+          _onClick = _props.onClick,
+          loaderType = _props.loaderType,
+          disabled = _props.disabled;
 
       var loaderHeight = parseInt(Number(height.split('px')[0]) * 0.5, 10);
       return _react2.default.createElement(
         'button',
         {
           type: 'button',
-          className: 'button ' + (isLoading ? 'disabled' : ''),
-          disabled: isLoading,
+          className: 'button ' + (isLoading || disabled ? 'react-button-disabled' : ''),
+          disabled: isLoading || disabled,
           onClick: function onClick() {
             return _onClick();
           },
@@ -434,10 +459,7 @@ var ButtonLoader = function (_Component) {
             minHeight: height
           }
         },
-        isLoading ? _react2.default.createElement('div', {
-          className: 'loader',
-          style: { width: loaderHeight + 'px', height: loaderHeight + 'px' }
-        }) : children
+        isLoading ? this.renderLoader(loaderHeight, loaderType) : children
       );
     }
   }]);
@@ -447,22 +469,26 @@ var ButtonLoader = function (_Component) {
 
 ButtonLoader.propTypes = {
   children: _propTypes2.default.string,
+  loaderType: _propTypes2.default.string,
   width: _propTypes2.default.string,
   height: _propTypes2.default.string,
   background: _propTypes2.default.string,
   onClick: _propTypes2.default.func,
-  isLoading: _propTypes2.default.bool
+  isLoading: _propTypes2.default.bool,
+  disabled: _propTypes2.default.bool
 };
 
 ButtonLoader.defaultProps = {
   width: '125px',
   height: '35px',
+  loaderType: 'spinner',
   background: '#22b686',
   children: 'Click Me!',
   onClick: function onClick() {
     return null;
   },
-  isLoading: false
+  isLoading: false,
+  disabled: false
 };
 
 exports.default = ButtonLoader;
@@ -473,7 +499,7 @@ exports.default = ButtonLoader;
 
 exports = module.exports = __webpack_require__(7)(false);
 // Module
-exports.push([module.i, ".button{\n  color:white;\n  border: none;\n  border-radius: 2px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n}\n\n#loader-1:before, #loader-1:after{\n  content: \"\";\n  position: absolute;\n  top: -10px;\n  left: -10px;\n  width: 100%;\n  height: 100%;\n  border-radius: 100%;\n  border: 4px solid transparent;\n  border-right-color: #ffffff;\n  border-left-color: #ffffff;\n  border-bottom-color: #ffffff;\n}\n\n.disabled{\n  opacity: 0.8;\n  cursor: not-allowed;\n}\n\n.loader {\n  margin: 5px 0px;\n  border: 4px solid #f3f3f3;\n  border-radius: 50%;\n  border-top: 4px solid transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-animation: spin 2s linear infinite;\n  animation: spin 2s linear infinite;\n}\n\n@-webkit-keyframes spin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes spin {\n  0% { transform: rotate(0deg); }\n  100% { transform: rotate(360deg); }\n}\n", ""]);
+exports.push([module.i, ".button{\n  color:white;\n  border: none;\n  border-radius: 2px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n}\n\n.react-button-disabled{\n  opacity: 0.75;\n  cursor: not-allowed;\n}\n\n.react-button-loader {\n  margin: 5px 0px;\n  border: 4px solid #f3f3f3;\n  border-radius: 50%;\n  border-top: 4px solid transparent;\n  width: 25px;\n  height: 25px;\n  -webkit-animation: spin 2s linear infinite;\n  animation: spin 2s linear infinite;\n}\n\n@-webkit-keyframes spin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes spin {\n  0% { transform: rotate(0deg); }\n  100% { transform: rotate(360deg); }\n}\n\n#bouncing-ball span{\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  border-radius: 100%;\n  background-color: #f3f3f3;\n  margin: auto 3px;\n}\n\n#bouncing-ball span:nth-child(1){\n  animation: bounce 1s ease-in-out infinite;\n}\n\n#bouncing-ball span:nth-child(2){\n  animation: bounce 1s ease-in-out 0.33s infinite;\n}\n\n#bouncing-ball span:nth-child(3){\n  animation: bounce 1s ease-in-out 0.66s infinite;\n}\n\n#bouncing-ball span:nth-child(4){\n  display: none;\n}\n\n@keyframes bounce{\n  0%, 75%, 100%{\n    -webkit-transform: translateY(0);\n    -ms-transform: translateY(0);\n    -o-transform: translateY(0);\n    transform: translateY(0);\n  }\n\n  25%{\n    -webkit-transform: translateY(-9px);\n    -ms-transform: translateY(-9px);\n    -o-transform: translateY(-9px);\n    transform: translateY(-9px);\n  }\n}\n\n#fading-ball span{\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  border-radius: 100%;\n  background-color: #f3f3f3;\n  margin: auto 3px;\n  opacity: 0;\n}\n\n#fading-ball span:nth-child(1){\n  animation: opacitychange 1s ease-in-out infinite;\n}\n\n#fading-ball span:nth-child(2){\n  animation: opacitychange 1s ease-in-out 0.33s infinite;\n}\n\n#fading-ball span:nth-child(3){\n  animation: opacitychange 1s ease-in-out 0.66s infinite;\n}\n\n#fading-ball span:nth-child(4){\n  display: none;\n}\n\n@keyframes opacitychange{\n  0%, 100%{\n    opacity: 0;\n  }\n\n  60%{\n    opacity: 1;\n  }\n}\n\n#jiggling-lines span{\n  display: inline-block;\n  width: 3px;\n  height: 15px;\n  background-color: #f3f3f3;\n  margin: 3px;\n}\n\n#jiggling-lines span:nth-child(1){\n  animation: grow 1s ease-in-out infinite;\n}\n\n#jiggling-lines span:nth-child(2){\n  animation: grow 1s ease-in-out 0.15s infinite;\n}\n\n#jiggling-lines span:nth-child(3){\n  animation: grow 1s ease-in-out 0.30s infinite;\n}\n\n#jiggling-lines span:nth-child(4){\n  animation: grow 1s ease-in-out 0.45s infinite;\n}\n\n@keyframes grow{\n  0%, 100%{\n    -webkit-transform: scaleY(1);\n    -ms-transform: scaleY(1);\n    -o-transform: scaleY(1);\n    transform: scaleY(1);\n  }\n\n  50%{\n    -webkit-transform: scaleY(1.8);\n    -ms-transform: scaleY(1.8);\n    -o-transform: scaleY(1.8);\n    transform: scaleY(1.8);\n  }\n}\n", ""]);
 
 
 
